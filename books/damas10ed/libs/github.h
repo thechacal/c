@@ -1,5 +1,5 @@
 void push() {
-  system("git add *");
+  system("git add *.c *.h");
   system("git commit -m 'Commited by github.h'");
   system("git push origin master");
 }

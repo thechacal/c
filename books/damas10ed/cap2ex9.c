@@ -6,5 +6,6 @@ int main(int argc, char const *argv[]) {
   printf("LOL");
 
   push();
+  
   return 0;
 }
