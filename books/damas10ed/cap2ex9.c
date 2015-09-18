@@ -1,4 +1,3 @@
-//teste
 #include <stdio.h>
 #include "libs/github.h"
 
