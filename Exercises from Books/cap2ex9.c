@@ -5,11 +5,11 @@ int main(int argc, char const *argv[]) {
 
   int dia, mes, ano;
 
-  printf("Digite um dia: ");
+  printf("Day? ");
   scanf("%d",&dia);
-  printf("Digite um mês: ");
+  printf("Month? ");
   scanf("%d",&mes);
-  printf("Digite um ano: ");
+  printf("Year? ");
   scanf("%d",&ano);
   printf("%d//%d//%d\n",dia,mes,ano );
 
