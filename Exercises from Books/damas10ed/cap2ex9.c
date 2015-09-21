@@ -11,7 +11,7 @@ int main(int argc, char const *argv[]) {
   scanf("%d",&mes);
   printf("Year? ");
   scanf("%d",&ano);
-  printf("%d//%d//%d\n",dia,mes,ano );
+  printf("%d/%d/%d\n",dia,mes,ano );
 
   push();
 

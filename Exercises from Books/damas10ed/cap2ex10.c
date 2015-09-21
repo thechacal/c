@@ -3,17 +3,14 @@
 
 int main(int argc, char const *argv[]) {
 
+  char str[10];
   int dia, mes, ano;
 
-  printf("Day? ");
+  printf("Date at the format aaaa-mm-dd: ");
   scanf("%d",&dia);
-  printf("Month? ");
-  scanf("%d",&mes);
-  printf("Year? ");
-  scanf("%d",&ano);
-  printf("%d//%d//%d\n",dia,mes,ano );
+  printf("%d/%d/%d\n",dia,mes,ano );
 
-  push();
+  //push();
 
   return 0;
 }
