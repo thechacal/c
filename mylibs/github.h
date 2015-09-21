@@ -3,3 +3,4 @@ void push() {
   system("git commit -m 'Commited by github.h'");
   system("git push origin master");
 }
+//lol
