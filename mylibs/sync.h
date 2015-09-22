@@ -60,7 +60,7 @@ int upload(int sd,char* file){
 	strcpy(hd.filename,file);
 	hd.version = VERSION;
 	hd.header_size = sizeof(hd);
-	printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t|\t%d\t|\n",hd.sync,hd.filename,hd.filesize,hd.header_size,hd.version);
+	printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t\t|\t%d\t|\n",hd.sync,hd.filename,hd.filesize,hd.header_size,hd.version);
 
 	if((send(sd,(void *)&hd,MAXSTRUCTSIZE,0)) < 0){
     printf("Falhou em mandar o cabeçalho!\n");
@@ -103,7 +103,7 @@ int download(int sd){
 	int written_bytes;
 	FILE *fp;
 	void *pheader = &hd2;
-  
+
 	if((recv(sd,(void *)buffer,MAXDATASIZE,0)) < 0){
     printf("Falhou em receber o cabeçalho do arquivo.\n");
 		return 1;
@@ -114,7 +114,7 @@ int download(int sd){
 		return 1;
 	}
 	else{
-    printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t|\t%d\t|\n",hd2.sync,hd2.filename,hd2.filesize,hd2.header_size,hd2.version);
+    printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t\t|\t%d\t|\n",hd2.sync,hd2.filename,hd2.filesize,hd2.header_size,hd2.version);
 	}
 	fp = fopen(hd2.filename,"w");
 	bytes_file = hd2.filesize;
