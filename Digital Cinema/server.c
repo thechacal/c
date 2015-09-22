@@ -1,5 +1,5 @@
 /*
- * Protótipo server que recebe um arquivo do protótipo client. ( FEITO )
+ * Protótipo server que recebe um arquivo de video do protótipo client. ( FEITO )
  * Fazer a transferencia com criptografia SSL onde o conteúdo do arquivo a ser enviado está criptografado com AES. ( TO DO )
  *
  * Desenvolvido por:
