@@ -24,7 +24,7 @@
 #include <sys/wait.h>
 #include <malloc.h>
 #include <resolv.h>
-#include "../mylibs/sync.h"
+#include "../mylibs/sync.h" //https://github.com/thechacal/c/tree/master/mylibs
 
 #define MYPORT 20000
 #define BACKLOG 10 /* Numero maximo de conexoes */

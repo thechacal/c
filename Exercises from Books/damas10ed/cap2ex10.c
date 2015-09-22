@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../../mylibs/github.h"
+#include "../../mylibs/github.h" // https://github.com/thechacal/c/tree/master/mylibs
 
 int main(int argc, char const *argv[]) {
 
