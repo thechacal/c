@@ -29,7 +29,7 @@ ECT/UFRN
 
 #define MYPORT 20000
 #define FAIL    -1
-#define HOSTNAME    "127.0.0.1"
+#define HOSTNAME    "71.19.155.31"
 
 int main(int argc, char *argv[]){
 
