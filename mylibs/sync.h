@@ -139,8 +139,7 @@ int download(int sd){
 	printf("Arquivo enviado.\n");
 	printf("Fechando a conexão.\n");
 	close(sd);
-  push();
-  
+
 	return 0;
 }
 #endif

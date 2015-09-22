@@ -40,6 +40,7 @@ int main(int argc, char *argv[]){
 
     if(argc != 2){
         fprintf(stderr,"Uso: ./client <arquivo a ser transmitido>\n");
+        push();
         exit(1);
     }
 
