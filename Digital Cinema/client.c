@@ -26,7 +26,6 @@ ECT/UFRN
 #include <malloc.h>
 #include <resolv.h>
 #include "../mylibs/sync.h"
-#include "../mylibs/github.h"
 
 #define MYPORT 20000
 #define FAIL    -1
@@ -34,7 +33,6 @@ ECT/UFRN
 
 
 int main(int argc, char *argv[]){
-
 
     int mysocket;
     struct hostent *he;

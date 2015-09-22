@@ -25,7 +25,6 @@
 #include <malloc.h>
 #include <resolv.h>
 #include "../mylibs/sync.h"
-#include "../mylibs/github.h"
 
 #define MYPORT 20000
 

@@ -10,7 +10,7 @@
  * Seguranca em Cinema Digital 4k3D
  * ECT/UFRN
  * */
- 
+
 #ifndef SYNC_H_
 #define SYNC_H_
 
@@ -24,10 +24,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "github.h"
 
-struct header
-{
-	int sync;//4bytes //default 0x7cab hex value
+struct header{
+  int sync;//4bytes //default 0x7cab hex value
 	char filename[MAXNAMESIZE];//32bytes
 	int filesize;//4 byte
 	int header_size;//4
@@ -36,31 +36,25 @@ struct header
 };
 
 
-int upload(int sd,char* file)
-{
-        if(sizeof(file) > MAXNAMESIZE)
-        {
-            printf("O nome do arquivo é muito grande, reduza para 32 caracteres.\n");
-            return 1;
-        }
-	char buffer[MAXDATASIZE];
+int upload(int sd,char* file){
+
+  char buffer[MAXDATASIZE];
 	struct stat st;
 	int fd;
 	int read_bytes;
 	int sent_bytes;
 	struct header hd;
+  void *p = buffer;
 	FILE *fp;
 	hd.sync = 31915;
 	fp = fopen(file,"rb");
 
-	if(fp == NULL)
-	{
-		printf("Arquivo não encontrado!\n");
+	if(fp == NULL){
+    printf("Arquivo não encontrado!\n");
 		return 1;
 	}
-	if((stat(file,&st) < 0))
-	{
-		printf("Falha ao tentar pegar o tamanho do arquivo:[%s]",file);
+	if((stat(file,&st) < 0)){
+    printf("Falha ao tentar pegar o tamanho do arquivo:[%s]",file);
 		return 1;
 	}
 	hd.filesize = st.st_size;
@@ -69,103 +63,84 @@ int upload(int sd,char* file)
 	hd.header_size = sizeof(hd);
 	printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t|\t%d\t|\n",hd.sync,hd.filename,hd.filesize,hd.header_size,hd.version);
 
-	if((send(sd,(void *)&hd,MAXSTRUCTSIZE,0)) < 0)
-	{
-		printf("Falhou em mandar o cabeçalho!\n");
+	if((send(sd,(void *)&hd,MAXSTRUCTSIZE,0)) < 0){
+    printf("Falhou em mandar o cabeçalho!\n");
 		return 1;
 	}
-	while(1)
-	{
-		fd = fileno(fp);
+	while(1){
+    fd = fileno(fp);
 		read_bytes = read(fd,buffer,MAXDATASIZE);
-		if(read_bytes < 0)
-		{
-			printf("Erro ao ler o arquivo[%s].\n",hd.filename);
+		if(read_bytes < 0){
+      printf("Erro ao ler o arquivo[%s].\n",hd.filename);
 			break;
 		}
-		if(read_bytes == 0)
-		{
-			break;
+		if(read_bytes == 0){
+      break;
 		}
-		void *p = buffer;
-		while(read_bytes > 0)
-		{
+		while(read_bytes > 0){
 			sent_bytes = send(sd,p,read_bytes,0);
-			if(sent_bytes < 0)
-			{
-				printf("Erro ao escrever no socket!\n");
+			if(sent_bytes < 0){
+        printf("Erro ao escrever no socket!\n");
 				break;
 			}
 			read_bytes -= sent_bytes;
 			p += sent_bytes;
-		}
-
-	}
+    }
+  }
 	fclose(fp);
-
 	printf("Arquivo enviado.\n");
 	printf("Fechando a conexão.\n");
 	close(sd);
-	return 0;
 
+	return 0;
 }
 
 
-int download(int sd)
-{
-	struct header hd2;
+int download(int sd){
+  struct header hd2;
 	char buffer[MAXDATASIZE];
 	int recv_bytes;
 	int bytes_file;
 	int written_bytes;
 	FILE *fp;
 	void *pheader = &hd2;
-	if((recv(sd,(void *)buffer,MAXDATASIZE,0)) < 0)
-	{
-		printf("Falhou em receber o cabeçalho do arquivo.\n");
+	if((recv(sd,(void *)buffer,MAXDATASIZE,0)) < 0){
+    printf("Falhou em receber o cabeçalho do arquivo.\n");
 		return 1;
 	}
 	memcpy(pheader,(void*)buffer,MAXSTRUCTSIZE);
-	if(hd2.sync != 31915)
-	{
-		printf("Cabeçalho de arquivo corrompido.\n");
+	if(hd2.sync != 31915){
+    printf("Cabeçalho de arquivo corrompido.\n");
 		return 1;
 	}
-	else
-	{
-		printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t|\t%d\t|\n",hd2.sync,hd2.filename,hd2.filesize,hd2.header_size,hd2.version);
+	else{
+    printf("Dados do cabeçalho: \n|\tSync\t|\tFilename\t|\tFilesize\t|\tHeader Size\t|\tVersion\t|\n|\t%d\t|\t%s\t|\t%d\t|\t%d\t|\t%d\t|\n",hd2.sync,hd2.filename,hd2.filesize,hd2.header_size,hd2.version);
 	}
 	fp = fopen(hd2.filename,"w");
 	bytes_file = hd2.filesize;
 	bzero(&buffer,sizeof(buffer));
-	while(bytes_file > 0)
-	{
+	while(bytes_file > 0){
 		recv_bytes = recv(sd,(void*)buffer,MAXDATASIZE,0);
-		if(recv_bytes < 0)
-		{
-			printf("Erro ao receber o arquivo.\n");
+		if(recv_bytes < 0){
+      printf("Erro ao receber o arquivo.\n");
 			return 1;
 		}
 		written_bytes = fwrite((void*)buffer, recv_bytes,1,fp);
-		if(written_bytes < 0)
-		{
+		if(written_bytes < 0){
 			printf("Falha ao tentar escrever no arquivo.\n");
 			return 1;
 		}
-		if(written_bytes == 0)
-		{
+		if(written_bytes == 0){
 			break;
 		}
 		bytes_file -= written_bytes;
-
-
 	}
 	fclose(fp);
-
 	printf("Arquivo enviado.\n");
 	printf("Fechando a conexão.\n");
 	close(sd);
+  push();
+  
 	return 0;
-
 }
 #endif
