@@ -33,7 +33,7 @@ ECT/UFRN
 
 int main(int argc, char *argv[]){
 
-
+    push();
     int mysocket;
     struct hostent *he;
     struct sockaddr_in zion;
@@ -71,6 +71,5 @@ int main(int argc, char *argv[]){
     printf("Fechando a conexao.\n\n");
     close(mysocket);
 
-    push();
     return 0;
 }

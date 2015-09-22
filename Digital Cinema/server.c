@@ -32,6 +32,7 @@
 
 int main(){
 
+  push();
   int mysocket, newsocket;
   int on = 1;
 
@@ -65,7 +66,6 @@ int main(){
   download(newsocket);
   close(newsocket);
   close(mysocket);
-  push();
 
   return 0;
 }
