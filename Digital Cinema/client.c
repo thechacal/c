@@ -29,49 +29,41 @@ ECT/UFRN
 
 #define MYPORT 20000
 #define FAIL    -1
-#define HOSTNAME    "71.19.155.31"
-
+#define HOSTNAME    "IP-SERVER-HOST"
 
 int main(int argc, char *argv[]){
 
-    int mysocket;
-    struct hostent *he;
-    struct sockaddr_in zion;
+  int mysocket;
+  struct hostent *he;
+  struct sockaddr_in zion;
 
-    if(argc != 2){
-        fprintf(stderr,"Uso: ./client <arquivo a ser transmitido>\n");
-        push();
-        exit(1);
-    }
-
-
-    if((he=gethostbyname(HOSTNAME )) == NULL){
-        perror("gethostbyname");
-        exit(1);
-    }
-
-    if((mysocket = socket(AF_INET, SOCK_STREAM, 0)) == -1){
-        perror("socket");
-        exit(1);
-    }
-
-    zion.sin_family = AF_INET;
-    zion.sin_port = htons(MYPORT);
-    zion.sin_addr = *((struct in_addr *)he->h_addr_list[0]);
-    bzero(&(zion.sin_zero), 8);
-
-    if(connect(mysocket,(struct sockaddr *)&zion, sizeof(struct sockaddr)) ==-1){
-        perror("connect");
-        exit(1);
-    }
-    else
-    {
-        printf("Conectado a [%s].\n",inet_ntoa(zion.sin_addr));
-    }
-    upload(mysocket,argv[1]);
-    printf("Fechando a conexao.\n\n");
-    close(mysocket);
-
+  if(argc != 2){
+    fprintf(stderr,"Uso: ./client <arquivo a ser transmitido>\n");
     push();
-    return 0;
+    exit(1);
+  }
+  if((he=gethostbyname(HOSTNAME )) == NULL){
+    Perror("gethostbyname");
+    exit(1);
+  }
+  if((mysocket = socket(AF_INET, SOCK_STREAM, 0)) == -1){
+    perror("socket");
+    exit(1);
+  }
+  zion.sin_family = AF_INET;
+  zion.sin_port = htons(MYPORT);
+  zion.sin_addr = *((struct in_addr *)he->h_addr_list[0]);
+  bzero(&(zion.sin_zero), 8);
+  if(connect(mysocket,(struct sockaddr *)&zion, sizeof(struct sockaddr)) ==-1){
+    perror("connect");
+    exit(1);
+  }else{
+    printf("Conectado a [%s].\n",inet_ntoa(zion.sin_addr));
+  }
+  upload(mysocket,argv[1]);
+  printf("Fechando a conexao.\n\n");
+  close(mysocket);
+  push();
+
+  return 0;
 }
