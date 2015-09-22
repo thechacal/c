@@ -79,6 +79,5 @@ int main(){
     close(newsocket);
     close(mysocket);
 
-    push();
     return 0;
 }
