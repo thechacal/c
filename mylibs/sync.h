@@ -35,7 +35,6 @@ struct header{
 	//48 bytes;
 };
 
-
 int upload(int sd,char* file){
 
   char buffer[MAXDATASIZE];
@@ -95,8 +94,8 @@ int upload(int sd,char* file){
 	return 0;
 }
 
-
 int download(int sd){
+
   struct header hd2;
 	char buffer[MAXDATASIZE];
 	int recv_bytes;
@@ -104,6 +103,7 @@ int download(int sd){
 	int written_bytes;
 	FILE *fp;
 	void *pheader = &hd2;
+  
 	if((recv(sd,(void *)buffer,MAXDATASIZE,0)) < 0){
     printf("Falhou em receber o cabeçalho do arquivo.\n");
 		return 1;
