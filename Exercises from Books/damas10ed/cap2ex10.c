@@ -9,7 +9,7 @@ int main(int argc, char const *argv[]) {
   scanf("%s",str);
   printf("%s\n",str);
 
-  //push();
+  push();
 
   return 0;
 }
