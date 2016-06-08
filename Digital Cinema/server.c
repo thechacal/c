@@ -4,7 +4,7 @@
  *
  * Desenvolvido por:
  *
- * Edluise Costa a.k.a ThEcHaCaL
+ * Ed Moura a.k.a ThEcHaCaL
  * Iuri Diniz a.k.a CLX
  * Caio Vilar a.k.a Hellscoffe
  *

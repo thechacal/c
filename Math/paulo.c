@@ -18,7 +18,7 @@
 
    Para compilar, inclua a biblioteca de matematica (-lm).
 
-   Edluise Costa Moura a.k.a ThEcHaCaL
+   Ed Moura a.k.a ThEcHaCaL
    Nov/2002
 *******************************************************************************/
 

@@ -3,7 +3,7 @@
  *
  * Desenvolvido por:
  *
- * Edluise Costa a.k.a ThEcHaCaL
+ * Ed Moura a.k.a ThEcHaCaL
  * Iuri Diniz a.k.a CLX
  * Caio Vilar a.k.a Hellscoffe
  *
@@ -48,7 +48,7 @@ int upload(int sd,char* file)
 	FILE *fp;
 	hd.sync = 31915;
 	fp = fopen(file,"rb");
-	
+
 	if(fp == NULL)
 	{
 		printf("Arquivo não encontrado!\n");
@@ -95,7 +95,7 @@ int upload(int sd,char* file)
 			read_bytes -= sent_bytes;
 			p += sent_bytes;
 		}
-		
+
 	}
 	fclose(fp);
 
@@ -103,7 +103,7 @@ int upload(int sd,char* file)
 	printf("Fechando a conexão.\n");
 	close(sd);
 	return 0;
-			
+
 }
 
 
@@ -151,10 +151,10 @@ int download(int sd)
 		if(written_bytes == 0)
 		{
 			break;
-		}	
+		}
 		bytes_file -= written_bytes;
-		
-		
+
+
 	}
 	fclose(fp);
 
@@ -162,6 +162,6 @@ int download(int sd)
 	printf("Fechando a conexão.\n");
 	close(sd);
 	return 0;
-	
+
 }
 #endif
