@@ -1,3 +1,3 @@
-# c
+# C
 
-Codes in C
+Some codes in C
