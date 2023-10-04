@@ -12,6 +12,7 @@ Ao final do programa, imprirmir o saldo final de cada projeto.
 Dica: Usar uma estrutura do tipo vetor para controlar os saldos dos projetos. 
 Usar o conceito de struct para agrupar as informações lidas.
 */
+
 #include <stdio.h>
 
 #define NUM_PROJETOS 10
